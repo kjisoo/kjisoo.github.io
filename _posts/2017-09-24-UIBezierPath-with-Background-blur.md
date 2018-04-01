@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Background blur에 UIBezierPath 적용하기
+feature-img: "assets/img/posts/2017-09-24-UIBezierPath-with-Background-blur/3.png"
+thumbnail: "assets/img/posts/2017-09-24-UIBezierPath-with-Background-blur/3.png"
 tags: [iOS, Swift, blur, path, UIBezierPath]
 redirect_from:
   - /blog/ios-path와-background-blur-함께-적용하기
