@@ -4,6 +4,7 @@ title: Firebase로 A/B 테스트 하기 (remote config)
 tags: [Swift, iOS, AB test, firebase, remote config]
 redirect_from:
   - /blog/firebase로-ab-테스트-하기
+  - /blog/firebase로-ab-테스트-하기/
 ---
 서비스를 운영/개발 하는 사람에게 a/b 테스트는 강력한 기능입니다.  
 실험적 기능에 대해 실제 사용자에 대해 통계데이터를 확보할 수 있습니다.  

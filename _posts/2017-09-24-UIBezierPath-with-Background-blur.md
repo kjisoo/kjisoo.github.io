@@ -6,6 +6,7 @@ thumbnail: "assets/img/posts/2017-09-24-UIBezierPath-with-Background-blur/3.png"
 tags: [iOS, Swift, blur, path, UIBezierPath]
 redirect_from:
   - /blog/ios-path와-background-blur-함께-적용하기
+  - /blog/ios-path와-background-blur-함께-적용하기/
 ---
 카메라 프리뷰위에 Background blur를 올리기 위한 과정입니다.  
 개발의 최종 화면은 다음과 같은 화면입니다.  

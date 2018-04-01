@@ -4,6 +4,7 @@ title: iOS 비동기 코드에 대한 테스트 방법
 tags: [iOS, Swift, RxSwift, test, RxTest, RxBlocking, XCTest, Quick, Nimble]
 redirect_from:
   - /blog/ios-비동기-코드에-대한-테스트-방법들
+  - /blog/ios-비동기-코드에-대한-테스트-방법들/
 ---
 비동기(Asynchronous)를 테스트 하기 위한 방법들을 정리해봅니다.  
 [XCTestCase](https://developer.apple.com/documentation/xctest/xctestcase), [Quick](https://github.com/Quick/Quick/) & [Nimble](https://github.com/Quick/Nimble/), Rx를 다룰것이며, 더 좋은 테스트 방법들이 많이 공개되어있으니, 참고용으로 보면 좋겠습니다.  

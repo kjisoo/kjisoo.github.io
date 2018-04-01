@@ -4,6 +4,7 @@ title: RxSwift를 이용한 method 호출 구독하기
 tags: [iOS, Swift, RxSwift, swizzling]
 redirect_from:
   - /blog/rxswift를-이용한-method-호출-관찰하기
+  - /blog/rxswift를-이용한-method-호출-관찰하기/
 ---
 RxSwift에서 swizzling을 통해 특정 메서드의 호출전, 후에 대한 이벤트를 쉽게 구독할 수 있습니다.  
 RxSwift의 NSObject+Rx.swift에 두 메서드가 정의되어있습니다.  

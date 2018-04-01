@@ -6,6 +6,7 @@ thumbnail: "assets/img/posts/2018-03-02-UIView-translatesAutoresizingMaskIntoCon
 tags: [translatesAutoresizingMaskIntoConstraints, constraint, autoresizing, Swift, iOS, auto layout]
 redirect_from:
   - /blog/uiview의-translatesautoresizingmaskintoconstraints-속성에-대한-이해
+  - /blog/uiview의-translatesautoresizingmaskintoconstraints-속성에-대한-이해/
 ---
 UIView의 [translatesAutoresizingMaskIntoConstraints](https://developer.apple.com/documentation/uikit/uiview/1622572-translatesautoresizingmaskintoco)속성에 대해 알아봅니다.  
 요약하면, 해당속성이 true이면, frame based인 [autoreszing mask](https://developer.apple.com/documentation/uikit/uiview/1622559-autoresizingmask)를 auto layout에서 사용할 수 있게 해줍니다.  

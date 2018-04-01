@@ -6,6 +6,7 @@ thumbnail: "assets/img/posts/2018-03-04-What-pillows-to-buy/1.png"
 tags: [article, pillow]
 redirect_from:
   - /blog/무슨-베개를-살까
+  - /blog/무슨-베개를-살까/
 ---
 구스 베개를 사고 싶어 조사하다가 너무 비싸서 저렴한 제품을 조사한 내용입니다.  
 ### 1. 구스
