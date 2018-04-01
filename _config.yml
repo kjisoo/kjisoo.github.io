@@ -1,6 +1,6 @@
 # SITE CONFIGURATION
 baseurl: ""
-url: "https://kjisoo.github.io"
+url: "http://blog.jisoo.net"
 title: 지수네 # site's title
 description: "iOS, Swift, Python을 사용하는 개발자" # used by search engines
 
