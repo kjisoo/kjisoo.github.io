@@ -2,7 +2,6 @@
 layout: post
 title: 하드웨어 스타트업
 tags: [startup, article, hardware]
-tags: [iOS, Swift, blur, path, UIBezierPath]
 redirect_from:
   - /blog/하드웨어-스타트업
 ---
