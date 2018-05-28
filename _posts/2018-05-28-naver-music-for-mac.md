@@ -15,7 +15,7 @@ tags: [naver-music, cocoa, swift, naver, music]
  
  mac앱은 처음 개발해봐서 부족한 부분과 버그가 많이 발견될 수 있습니다.
 
-[다운로드 페이지](https://github.com/kjisoo/naver-music-for-mac/releases)
+[다운로드](https://github.com/kjisoo/naver-music-for-mac/blob/master/latest.zip)
 
   
 ##### 플레이어
