@@ -11,7 +11,7 @@ Non-Interactive는 present와 같이 새로운 VC가 나오는 애니메이션�
 반면에 Interactive는 UINavigationController에서 왼쪽을 쓸어내면, 사용자의 제스쳐에 따라서 애니메이션이 달라집니다.  
 
 #### 프로토콜 
-A VC에서 B VC로 이동한다면, A VC는 `UIViewControllerTransitioningDelegate`프로토콜 따라야 합니다.  
+A VC에서 B VC로 이동한다면, B VC는 `UIViewControllerTransitioningDelegate`프로토콜 따라야 합니다.  
 Non-Interactive를 정의하는 `UIViewControllerAnimatedTransitioning` 프로토콜과,  
 Interactive를 정의하는 `UIViewControllerInteractiveTransitioning` 프로토콜이 있습니다.  
 `UIViewControllerInteractiveTransitioning`의 경우에는 `UIPercentDrivenInteractiveTransition`의 구체클래스도 추가로 제공하고 있습니다.  
