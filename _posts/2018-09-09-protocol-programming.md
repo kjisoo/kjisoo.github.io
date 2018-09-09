@@ -33,7 +33,7 @@ extension을 통해 부분 기본 구현으로, 조금 더 유연한 개발이 �
 ### 예제
 User의 id를 받아 User의 이미지들을 돌려주는 시나리오를 설정합니다.    
 {% highlight swift %}
-class ImagesController {
+class ImageController {
   func getImagesSortedByTime(userID: Int) -> [Image] {
     let userService = UserService()  // 1
     let imageService = ImageService()  // 2
@@ -43,7 +43,7 @@ class ImagesController {
   }
 }
 {% endhighlight %}
-ImagesController는 userID를 받아 해당 유저의 모든 이미지를 시간순으로 정렬하여 보여줍니다.  
+ImageController는 userID를 받아 해당 유저의 모든 이미지를 시간순으로 정렬하여 보여줍니다.  
 1.  유저의 아이디를 이용해 유저를 얻어올 수 있는 유저 서비스를 생성합니다.  
 2.  유저 오브젝트를 이용해 해당 유저의 이미지를 얻어오는 서비스를 생성합니다.  
 3.  유저 아이디를 이용해 유저를 얻어옵니다.  
