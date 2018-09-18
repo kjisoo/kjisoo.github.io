@@ -20,7 +20,7 @@ newPasswordTextField.passwordRules = UITextInputPasswordRules(descriptor: rulesD
 길이, 허용하는 문자, 필수 문자등을 설정할 수 있습니다. 
 
 ### 인증코드 
-인증코드가 메시지로 오게되면 새로운 휴리스틱이 적용되어 인증코들르 찾고, 키보드에 표시해줍니다. 
+인증코드가 메시지로 오게되면 새로운 휴리스틱이 적용되어 인증코드를 찾고, 키보드에 표시해줍니다. 
 ![인증코드]({{ site.baseurl }}/assets/img/posts/2018-06-09-iOS12-authentication/code.png) 
  
 ### 웹뷰에서 키체인
