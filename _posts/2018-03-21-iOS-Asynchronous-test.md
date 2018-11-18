@@ -58,7 +58,7 @@ execute에 실행이 취소되었을때 받을 수 있는 피드백이 없기 �
 클로저 실행 확인  
 {% highlight swift %}
 func testPassParam() {
-  let executeExpectation = XCTestExpectation(description: "in block")
+  let executeExpectation = XCTestExpectation(description: "in closure")
   let text = "Test param string"
   fooService.execute(param: text, delay: 1) { (param) in
     executeExpectation.fulfill()
@@ -73,8 +73,8 @@ wait에는 enforceOrder파라미터가 있는데 해당 값이 true면 expectati
 
 ##### 클로저가 실행되지 않는게 올바른 동작일때
 {% highlight swift %}
-func testCancelExecuteBlock() {
-  let executeExpectation = XCTestExpectation(description: "in block")
+func testCancelExecuteClosure() {
+  let executeExpectation = XCTestExpectation(description: "in closure")
   executeExpectation.isInverted = true
   fooService.execute(param: "param", delay: 1) { (_) in
     executeExpectation.fulfill() // test fail
@@ -89,8 +89,8 @@ func testCancelExecuteBlock() {
 
 ##### 위 두 케이스를 혼합
 {% highlight swift %}
-func testDoubleExecuteBlock() {
-  let executeExpectation = XCTestExpectation(description: "in block")
+func testDoubleExecuteClosure() {
+  let executeExpectation = XCTestExpectation(description: "in closure")
   let notExecuteExpectation = XCTestExpectation(description: "never execute")
   notExecuteExpectation.isInverted = true
   fooService.execute(param: "param", delay: 1) { (_) in
@@ -125,11 +125,11 @@ waitUntil를 사용할 수 있습니다.
 {% highlight swift %}
 it("Compares parameters equally using toEventually.") {
   let text = "Test param string"
-  var inBlockText: String = ""
+  var inClosureText: String = ""
   fooService.execute(param: text, delay: 1, complete: { (param) in
-    inBlockText = param as! String
+    inClosureText = param as! String
   })
-  expect(inBlockText).toEventually(equal(text), timeout: 2)
+  expect(inClosureText).toEventually(equal(text), timeout: 2)
 }
 {% endhighlight %}
  waitUntil외에서 toEventually라는 기능을 제공해줍니다.  
