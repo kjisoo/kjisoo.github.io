@@ -47,9 +47,9 @@ func loadItems() {
 }
 {% endhighlight %}
 이제 Controller는 데이터를 가저오는 역할까지 담당하게 되었습니다.  
-한 페이지에서 데이터를 요청하는 영역이 많아질수록 Controller의 크기는 커지게 됩니다.  
+따라서 한 페이지에서 데이터를 요청하는 부분이 많아질수록 Controller의 크기는 커지게 됩니다, 즉 Massive Controller가 됩니다.  
   
-데이터를 가저오는 부분을 Model로 구분하고 Controller가 이를 Notify 받아서 처리할 수 있습니다.  
+데이터를 가저오는 부분을 Model로 구분하고 Controller가 이를 Notify 받는 설계로 변경하여 해결할 수 있습니다.  
 {% highlight swift %}
 protocol ItemReceiveDelegate {
   func recived(items: [Item])
