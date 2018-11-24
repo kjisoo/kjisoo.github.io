@@ -20,7 +20,7 @@ Model <---> Controller <---> View 로 각 레이어는 커뮤니케이션 하는
   
 ### MVC가 망가지는 이유
 #### a. Model layer의 영역 축소
-Model layer의 영역을 단순히 Entity, [Anemic domain model](https://en.wikipedia.org/wiki/Anemic_domain_model#cite_note-SAPM-4) 로 너무 작게 생각하여 생겨나는 문제들이 있습니다.  
+Model layer의 영역을 단순히 Entity, [Anemic domain model](https://en.wikipedia.org/wiki/Anemic_domain_model) 로 너무 작게 생각하여 생겨나는 문제들이 있습니다.  
 Model이 Non-anemic 해야 한다는 의미가 아닌, business logic을 담당하고 있는 오브젝트가 Model layer에 포함되지 않는 상태입니다.  
 이러한 코드가 Controller에 들어가게 되는데, 예를 들면,  
 {% highlight swift %}
