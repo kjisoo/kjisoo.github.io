@@ -16,7 +16,7 @@ tags: [ios, mvc, pattern, architecture]
 [layered architecture](https://ko.wikipedia.org/wiki/다층_구조)를 기반으로 Model, Controller, View 로 레이어가 나누어져 있고,  
 Model <---> Controller <---> View 로 각 레이어는 커뮤니케이션 하는 레이어가 정해져있습니다.  
 따라서 어떤 로직이 어떤 레이어에 있을지 예측 가능하고, 역할과 책임이 분리되어 있습니다.  
-아래에서 세분화 하여 살펴보지만, 사실은 모두 각 레이어의 역할, 책임을 제대로 구분(관심사 분리, SoC)하지 않아서 생기는 문제입니다.  
+아래에서 세분화 하여 살펴보지만, 사실은 모두 각 레이어의 관심사 분리(SoC)와 단일책임원칙(SRP)를 구분 하지 않아서 생기는 문제입니다.  
   
 ### MVC가 망가지는 이유
 #### a. Model layer의 영역 축소
@@ -83,11 +83,20 @@ extension ItemTableView: ItemReceiveDelegate {
 데이터를 가저오는 로직, 혹은 TableView의 Delegate, DataSource까지 TableView가 구현하여 처리합니다.  
 이 과정속에서 자연스럽게 View는 Controller, Model의 역할을 수행하게 됩니다.  
   
-#### c. Singleton으로 이루어진 Service, Helper 들
+#### c. Massvie Model
+b케이스와 동일한 예시입니다. 이번엔 반대로 Model 역할이 과대해지는 부분이 있는데,  
+View를 Model에서 직접 조작하는 일이 많아지는 케이스입니다.  
+예를들어, 네트워크, 작업완료등으로 Alert, Confirm, Animation등 UI요소에 접근하는 일을 Model 에서 하게 되는것입니다.  
+이는 complete, error handler를 통해 VC에서 처리하거나,  
+구체화된 UI에 의존하는것이 아니라, 추상화에 의존하면 해결할 수 있습니다.  
+  
+#### d. Singleton으로 이루어진 Service, Helper 들
 Singleton pattern 동기와는 상관없이 모든 Service, Helper을 싱글톤으로 구성하는 케이스가 있습니다.  
 이 자체는 패턴의 남용이지만, 대게 이렇게 되는 경우는 의존성에 대해 고려하지 않고 서로 얽혀있을 때 였습니다.  
 각 Service Model들은 서로를 싱글톤으로 참조하고 동작합니다.  
 이로 인해 테스가 어려워집니다. 그리고 b 케이스 혹은 다른 안좋은 케이스로 빠지기 쉬워집니다.  
+혹은 하나의 싱글톤 객체가 너무 많은 역할을 하고 있는 경우입니다.  
+AppDelegate, GodSingleton에서 모든걸 구현(20000~30000라인)하고 공유하는 식으로 사용하는 프로젝트를 봤습니다.  
   
 ### MVC의 한계
 #### a. 테스트 커버리지의 한계
