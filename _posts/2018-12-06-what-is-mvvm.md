@@ -14,7 +14,7 @@ Model은 MVC, MVP등의 Model과 동일합니다.
 View는 UI와 관련된 부분들을 말합니다.  
 iOS에서는 Controller도 View로 취급합니다.  
 터치, 제스쳐, 애니메이션등도 이곳에 해당합니다.  
-GUI만 View를 의미하는것은 아닙니다. CUI에서는 출력되는 텍스트가 View에 해당합니다.  
+GUI만 View를 의미하는것은 아닙니다. CLI에서는 출력되는 텍스트가 View에 해당합니다.  
   
 #### ViewModel
 **추상화된 View의 Model(abstraction of the view)**입니다.  
@@ -43,15 +43,52 @@ class ViewModel {
 }
 {% endhighlight %}
 위와 같이 UIImage 혹은 View에 값을 수정하는것을 ViewModel 에서 하면 안됩니다.  
+혹은 View의 lifecycle 에 의존적이거나, (viewDidLoad, viewDidAppear, ...)  
+View를 레퍼런스로 받아 뷰의 값을 직접 변경하는 일도 UI와 관련된것으로 간주합니다.   
   
+#### Everything observable
+MVVM예제를 처음 접했을때 모든것을 Observable 로 처리한 예제를 봤습니다.  
+{% highlight swift %}
+class ViewModel {
+  // MARK: Input
+  let password = PublishSubject<String>()
+  let confirm = PublishSubject<Void>()
 
-#### everything observable
-
+  // MARK: Output
+  let isConfirm: Observable<Bool>
+}
+{% endhighlight %}
+실제 프로젝트에선 이정도로만 구성해도 문제는 없을거라 생각이 듭니다. [kickstarter/ios-oss](https://github.com/kickstarter/ios-oss)가 위와 같이 구성되어 있습니다.  
+위와 같이 구성할때 문제점 혹은 어려운점은,  
+input에 대한 output이 init에서 모두 구성하거나, 별도의 observer type을 생성 해야 한다는점,  
+input이 Action인지 Property의 업데이트인지 명확하지 않은점,  
+Output의 초기값이 있는지, 없는지 혹은 ObserverType으로 Output을 구성했을때 외부에서 값을 변경할 수 있는점,  
+Rx의 의존도가 매우 상승하는 부분이 있습니다.  
+Observable property없이 생성하는 예제는 아래에서 다루겠습니다.  
+  
 #### View에 대해 너무 많이 아는 ViewModel
-
+MVVM을 처음 적용해볼때 View에 코드를 최대한 남기지 않게 하다보니 ViewModel이 View에 대해 너무 많이 알게 되는 경우가 생겼습니다.  
+예를 들면, ViewModel의 Observable<CGPoint> 프로퍼티를 View의 좌표에 바인딩 한다고 하면, ViewModel은 UI에 의존적인건 아니지만, UI에 대해 간접적인 지식을 알게 됩니다.(View가 어떤식으로 구성될 건지 구체적인 내용)  
+해당 내용은 View의 추상화에서 더 다루겠습니다.  
+  
 #### Massive ViewModel
-
+ViewModel이 Massive해지는건 아키텍쳐가 아닌 설계의 문제로 자세한 내용은, [iOS에서 MVC는 왜 망가질까](https://blog.jisoo.net/2018/11/24/why-mvc-destroyed.html)
+프리젠테이션 로직을 담당하는 ViewModel이 비지니스 로직까지 책임지면서 ViewModel이 비대해지는 상황입니다.  
+그래도 MVC보다 긍정적인 부분은, View가 ViewModel 인터페이스에 의존적이기 때문에 인터페이스를 유지한채 리팩토링이 자유로운 점 입니다.  
+  
 ### 고민, 어려움
+#### View의 추상화
+ViewModel은 추상화된 View입니다.  
+추상화 된 View란 무엇인가에 대해 고민할 필요가 있었습니다.  
+어떤 기능을 수행하는 ViewModel이 있고 이를 이용해 여러 형태의 View를 만들 수 있다면 이 ViewModel은 추상화가 잘 되어있다고 할 수 있을거 같습니다.  
+ViewModel은 수행하고자 하는 기능에 문제가 없는 수준의 인터페이스를 제공하기만 하고 실제 View가 어떤 식으로 구성되던지 신경쓰지 않아야 합니다.  
+예를 들어,  
+{% highlight swift %}
+class ViewModel {
+  let 
+}
+{% endhighlight %}
+  
 #### Confirm같은 UI와 밀접하게 연관된 부분
 View에서 처리가 가능하면 View에서 처리하면 되지만 ViewModel에서 처리 해야 한다면,  
 UI에 의존적이지 않은 Interface에 의존하게 합니다.  
