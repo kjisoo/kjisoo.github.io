@@ -88,6 +88,7 @@ class ViewModel {
   let 
 }
 {% endhighlight %}
+{% TODO %}
   
 #### Confirm같은 UI와 밀접하게 연관된 부분
 View에서 처리가 가능하면 View에서 처리하면 되지만 ViewModel에서 처리 해야 한다면,  
@@ -106,9 +107,50 @@ ViewModel이 다른 ViewModel에 의존적일 수 있습니다.
 `Mediator`와 `EventBus`를 통해 어느정도 해결이 가능합니다.  
 `Mediator`는 ViewModel간에 의존성을 명시적으로 표시할 수 있습니다. 의존성간에 Mediator를 작성하는것이 과도할 수 있고 의존적인 ViewModel이 많을경우 Mediator가 더 복잡해질 수 있습니다.  
 `EventBus`는 ViewModel간에 의존성을 명시적으로 표시할 순 없지만, 간단하고 더 많은 ViewModel에게 이벤트를 전파할 수 있습니다.  
-
+  
 #### 데이터만 있는 ViewModel
+데이터의 변형이 없이 Entity의 데이터를 그대로 사용할때가 있습니다.  
+Cell들이 대부분 이에 해당하는데,  
+{% highlight swift %}
+struct Memo {
+  let title: String
+  let content: String
+  let id: Int
+}
+{% endhighlight %}
+위와 같이 메모의 title, content를 그대로 사용하고 id은 사용하지 않는다고 가정할 때  
+ViewModel은 각 데이터들을 전달만 하게 됩니다.  
+옵션은 3가지가 있는데,  
+1. Entity를 전달하기
+2. ViewModel에서 중복으로 필드를 구현하기
+3. ViewModel에서 Entity를 전달하기 단, Entity는 Immutable
+{% highlight swift %}
+// 1. Entity를 전달하기
+class ListViewModel {
+  let memos: Observable<Memo>
+}
+ 
+// 2. ViewModel에서 중복으로 필드를 구현하기
+class ListViewModel {
+  let memos: Observable<MemoViewModel>
+}
 
+class MemoViewModel {
+  let title: String
+  let content: String
+
+  init(memo: Memo) {}
+}
+
+// 3. ViewModel에서 Entity를 전달하기 단, Entity는 Immutable
+class MemoViewModel {
+  let memo: Observable<Memo>
+}
+{% endhighlight %}
+저는 가능하면 2, 3번을 사용합니다.  
+각 셀마다 ViewModel을 만드는 수고에 비해 추가적인 동작이나 값의 변환이 필요할 때 수정이 쉽다는 장점이 더 크다고 생각됩니다.  
+추가로 ViewModel 스스로 값을 변경할 수 있습니다. `MemoViewModel`에서 Memo의 id를 이용해 entity의 변경을 구독하고 값이 변경되었을때 ListViewModel와 상관없이 스스로 값을 변경할 수 있습니다.  
+  
 #### one way, two way binding
 
 #### Commands
