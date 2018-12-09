@@ -106,9 +106,9 @@ ViewModel은 Confirmable에는 의존적이지만, UI와는 여전히 분리되�
 #### ViewModel 간에 의존성
 ViewModel이 다른 ViewModel에 의존적일 수 있습니다.  
 이때 ViewModel에 직접 접근하여 개발하다 보면, 의존성 그래프가 매우 복잡해질 수 있습니다.  
-`Mediator`와 `EventBus`를 통해 어느정도 해결이 가능합니다.  
-`Mediator`는 ViewModel간에 의존성을 명시적으로 표시할 수 있습니다. 의존성간에 Mediator를 작성하는것이 과도할 수 있고 의존적인 ViewModel이 많을경우 Mediator가 더 복잡해질 수 있습니다.  
-`EventBus`는 ViewModel간에 의존성을 명시적으로 표시할 순 없지만, 간단하고 더 많은 ViewModel에게 이벤트를 전파할 수 있습니다.  
+Mediator와 EventBus를 통해 어느정도 해결이 가능합니다.  
+Mediator는 ViewModel간에 의존성을 명시적으로 표시할 수 있습니다. 의존성간에 Mediator를 작성하는것이 과도할 수 있고 의존적인 ViewModel이 많을경우 Mediator가 더 복잡해질 수 있습니다.  
+EventBus는 ViewModel간에 의존성을 명시적으로 표시할 순 없지만, 간단하고 더 많은 ViewModel에게 이벤트를 전파할 수 있습니다.  
   
 #### 데이터만 있는 ViewModel
 데이터의 변형이 없이 Entity의 데이터를 그대로 사용할때가 있습니다.  
@@ -122,7 +122,8 @@ struct Memo {
 {% endhighlight %}
 위와 같이 메모의 title, content를 그대로 사용하고 id은 사용하지 않는다고 가정할 때  
 ViewModel은 각 데이터들을 전달만 하게 됩니다.  
-옵션은 3가지가 있는데,  
+Mirror를 활용해 Proxy형태의 ViewModel을 만들고자 했는데 좋은 결과를 얻지 못했습니다.  
+가능한 옵션은 3가지가 있는데,  
 1. Entity를 전달하기
 2. ViewModel에서 중복으로 필드를 구현하기
 3. ViewModel에서 Entity를 전달하기 단, Entity는 Immutable
