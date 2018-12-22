@@ -1,6 +1,6 @@
 # SITE CONFIGURATION
 baseurl: ""
-url: "http://blog.jisoo.net"
+url: "https://blog.jisoo.net"
 title: 지수네 # site's title
 description: "iOS, Swift, Python을 사용하는 개발자" # used by search engines
 
@@ -20,7 +20,7 @@ theme_settings:
 
   # Icons
   rss: true  # Make sure you created a feed.xml with feed.xml layout
-  email_address: "kim@jisoo.net"# Full email address, e.g. "sam@example.com"
+  email_address: "kim@jisoo.net"
   behance:
   bitbucket:
   dribbble:
@@ -31,7 +31,7 @@ theme_settings:
   google_plus:
   instagram:
   keybase:
-  linkedin: "http://linkedin.com/in/kjisoo/" # Full URL
+  linkedin: "https://linkedin.com/in/kjisoo/" # Full URL
   pinterest:
   reddit:
   soundcloud:
