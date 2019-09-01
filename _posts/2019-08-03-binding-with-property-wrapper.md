@@ -34,10 +34,10 @@ class SubjectProperty<Element>: BaseSubject<Element> {
   }
   weak var delegate: BindableObject?
   
-  private let key: AnyHashable
+  private let key: AnyKeyPath
   private let subject: BehaviorSubject<Element>
   
-  init(wrappedValue: Element, key: AnyHashable) {
+  init(wrappedValue: Element, key: AnyKeyPath) {
     self.wrappedValue = wrappedValue
     self.key = key
     self.subject = BehaviorSubject<Element>(value: wrappedValue)
@@ -94,7 +94,7 @@ ObservableProperty는 단방향으로 데이터가 흐르기 때문에 Observabl
 <br/><br/> 
 {% highlight swift %}
 protocol BindableObject: class {
-  func didChanged(key: AnyHashable)
+  func didChanged(key: AnyKeyPath)
 }
  
 class ViewModel: BindableObject {
@@ -103,23 +103,24 @@ class ViewModel: BindableObject {
   @SubjectProperty(wrappedValue: "", key: \ViewModel.password)
   var password: String
   
-  lazy var loignAction = CocoaAction(enabledIf: canExecuteLogin,
+  lazy var loignAction = CocoaAction(enabledIf: $canExecuteLogin,
                                                   workFactory: { (_) -> Observable<Void> in
                                                     return Observable<Void>.just(()).delay(.seconds(5), scheduler: MainScheduler.asyncInstance)
   })
-  
-  private let canExecuteLogin = BehaviorSubject<Bool>(value: false)
+ 
+  @ObservableProperty(wrappedValue: false)
+  private var canExecuteLogin 
   
   init() {
     _email.delegate = self
     _password.delegate = self
   }
   
-  func didChanged(key: AnyHashable) {
-    switch key.hashValue {
-    case (\ViewModel.email).hashValue,
-         (\ViewModel.password).hashValue:
-      canExecuteLogin.onNext(email.count >= 10 && password.count >= 4)
+  func didChanged(key: AnyKeyPath) {
+    switch key {
+    case \ViewModel.email,
+         \ViewModel.password:
+      canExecuteLogin = email.count >= 10 && password.count >= 4
     default:
       break
     }
@@ -165,17 +166,18 @@ class ListViewModel {
   @ObservableProperty
   private(set) var repos: [Repo] = []
   
-  lazy var loadMoreAction = CocoaAction(enabledIf: canExecuteLoadMore,
+  lazy var loadMoreAction = CocoaAction(enabledIf: $canExecuteLoadMore,
                                         workFactory: { [weak self] _ -> Observable<Void> in
                                           // fetch data and append
                                           return .just(())
   })
   
-  private let canExecuteLoadMore = BehaviorSubject<Bool>(value: true)
+  @ObservableProperty(wrappedValue: true)
+  private let canExecuteLoadMore
   
   private func appendRepo(_ repos: [Repo]) {
     if repos.isEmpty {
-      canExecuteLoadMore.onNext(false)
+      canExecuteLoadMore = false
     } else {
       self.repos.append(contentsOf: repos)
     }
