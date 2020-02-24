@@ -13,7 +13,7 @@ https://forums.swift.org/t/se-0258-property-wrappers-third-review/26399 해당 �
 대신, Swift UI를 지탱하고 있는 기술들이 Swift5.1 에 포함됨에 따라 비슷한 형태의 구현을 UIKit 위에서 할 수 있게 되었습니다.  
 이번에는 Swift5.1에서 추가될 [PropertyWrapper(SE-0258)](https://github.com/apple/swift-evolution/blob/master/proposals/0258-property-wrappers.md)와 RxSwift+RxCocoa를 이용한 MVVM 패턴을 구현해보고자 합니다.  
   
-기존에 작성한 [MVVM패턴에 대하여](https://blog.jisoo.net/2018/12/09/what-is-mvvm.html)에서 언급한것처럼 iOS에서 Binding은 어려운 존재입니다.  
+기존에 작성한 [MVVM패턴에 대하여]({{ site.baseurl }}/2018/12/09/what-is-mvvm.html)에서 언급한것처럼 iOS에서 Binding은 어려운 존재입니다.  
 Rx를 활용했을때의 문제점은 데이터의 순환 참조가 어렵다는 문제, Input과 Output이 분리되는등의 문제점이 있었습니다.  
 이를 PropertyWrapper와 Rx를 통해 해결해보고자 했습니다.   
 최종적인 목표는, ViewModel 내에서 내부 데이터 참조를 쉽게 하고 `ex) viewModel.property.value() (x), viewmodel.property (o)`, binding시에는 이미 잘 개발되어 있는 풍부한 Rx의 기능을 사용하는것 입니다.  

@@ -73,7 +73,7 @@ MVVM을 처음 적용해볼때 View에 코드를 최대한 남기지 않게 하�
 해당 내용은 View의 추상화에서 더 다루겠습니다.  
   
 #### Massive ViewModel
-ViewModel이 Massive해지는건 아키텍쳐가 아닌 설계의 문제로 자세한 내용은, [iOS에서 MVC는 왜 망가질까](https://blog.jisoo.net/2018/11/24/why-mvc-destroyed.html)
+ViewModel이 Massive해지는건 아키텍쳐가 아닌 설계의 문제로 자세한 내용은, [iOS에서 MVC는 왜 망가질까]({{ site.baseurl }}/2018/11/24/why-mvc-destroyed.html)
 프리젠테이션 로직을 담당하는 ViewModel이 비지니스 로직까지 책임지면서 ViewModel이 비대해지는 상황입니다.  
 그래도 MVC보다 긍정적인 부분은, View가 ViewModel 인터페이스에 의존적이기 때문에 인터페이스를 유지한채 ViewModel의 리팩토링이 자유로운 점 입니다.  
   

@@ -13,7 +13,7 @@ However, some of techniques needed to implement SwiftUI are included in Swift5.1
 So we can implement similar SwiftUI on UIKit
 This article show you how to implement binding in MVVM with [PropertyWrappers(SE-0258)](https://github.com/apple/swift-evolution/blob/master/proposals/0258-property-wrappers.md), Rx.
   
-I wrote about [(KR)MVVM패턴에 대하여](https://blog.jisoo.net/2018/12/09/what-is-mvvm.html). 
+I wrote about [(KR)MVVM패턴에 대하여]({{ site.baseurl }}/2018/12/09/what-is-mvvm.html). 
 In that article I mentioned the difficulty of binding.
 When you use Rx, View is easy to bind but Implementing ViewModel is difficult.  
 Because all the properties of the ViewModel are Observable, it is difficult to modify or configure the values.  
