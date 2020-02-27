@@ -152,7 +152,9 @@ a {
     text-decoration: none;
 }
 
-iframe,
+iframe {
+    max-width: 100%;
+}
 img,
 embed,
 object,
